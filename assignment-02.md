@@ -50,7 +50,7 @@ so the work is like above
 * $W(n)=9W(n/3)+n^2$
 .  root work n^2
 level 1 work 9(n/3)^2 = n^2  balanced
-* log9(n) levels so O(lg(n)n)
+* log9(n) levels so O(lg(n)n^2)
 . 
 .  
 . 
@@ -140,16 +140,16 @@ Suppose that for a given task you are choosing between the following three algor
 .  O(n^log2(5))
 
 . B: W(n) = 2W(n-1) + 1
-. leaf = O(n)
-  root = O(1), therefore leaf dominanted
-  O(n)
+. root = 1
+  level 1 = 2 , therefore leaf dominanted
+  O(2^n)
 
   C: W(n) = 9W(n/3) + n^2
   leaf = 9(n/3)^2 = n^2
   root= n^2, therefore balanced
   O(n^2 * logn)
 
-C < A < B, Choose B since it has the least work 
+B <A < C , Choose C since it has the least work 
   
 
 ## Part 3: Parenthesis Matching
