@@ -1,6 +1,6 @@
 # CMPS 2200 Assignment 2
 
-**Name:**_________________________
+**Name:** Joshua Sasson
 
 In this assignment we'll work on applying the methods we've learned to analyze recurrences, and also see their behavior
 in practice. As with previous
@@ -16,7 +16,8 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 * $W(n)=2W(n/3)+1$
 .  
-.  
+.  each split creates two new nodes with size n/3. The depth is log3(n) and each level has work 1 and two times more work so it is leaf
+dominated so the work is 2^log3(n) which simplifies to O(n^(lg3(2))
 . 
 .  
 . 
@@ -24,7 +25,9 @@ Derive asymptotic upper bounds of work for each recurrence below.
 . 
  
 * $W(n)=5W(n/4)+n$
-.  
+.  (5/n)/4 grows asymptotically faster than n, therefore leaf dominanted
+so the work is like above 
+  O(n^log4(5))
 .
 .  
 . 
@@ -35,7 +38,8 @@ Derive asymptotic upper bounds of work for each recurrence below.
 . 
 
 * $W(n)=7W(n/7)+n$
-.  
+.  (7n)/7 = n, therefore balanced so log n depth and n work at each level so 
+  O(nlogn) 
 . 
 .  
 .  
@@ -44,8 +48,9 @@ Derive asymptotic upper bounds of work for each recurrence below.
 .
 
 * $W(n)=9W(n/3)+n^2$
-.  
-.
+.  root work n^2
+level 1 work 9(n/3)^2 = n^2  balanced
+* log9(n) levels so O(lg(n)n)
 . 
 .  
 . 
@@ -55,9 +60,9 @@ Derive asymptotic upper bounds of work for each recurrence below.
 .
 
 * $W(n)=8W(n/2)+n^3$
-.  
-.
-.  
+.  leaf = 8(n/2)^3 = (8n^3 / 8) = n^3
+.  root = n^3, therefore balanced
+.  O(n^3logn)
 .  
 .  
 .  
@@ -67,19 +72,18 @@ Derive asymptotic upper bounds of work for each recurrence below.
 
 
 * $W(n)=49W(n/25)+n^{3/2}\log n$
-.  
-.  
-. 
-.  
+.  root = n^3/2logn
+level one 49((n/25)^(3/2)lg(n/25) = 49n^(3/2)/125 * lg(n/25) is less work so root dominated
+.  O(n^(3/2)logn)
 . 
 .  
 .  
 .  
 
 * $W(n)=W(n-1)+2$
-.  
-.  
-. 
+.  root = 2
+.  level 1 = 2, therefore balaneced 
+. O(n)
 .  
 . 
 .  
@@ -87,9 +91,9 @@ Derive asymptotic upper bounds of work for each recurrence below.
 .  
 
 * $W(n)= W(n-1)+n^c$, with $c\geq 1$
-.  
-.  
-.  
+.  root = n^c
+.  level 1= (n-1)^c is still n^c upper bound on work so balanced 
+.  O(n^c *n) 
 .  
 .  
 . 
@@ -97,7 +101,10 @@ Derive asymptotic upper bounds of work for each recurrence below.
 . 
 
 * $W(n)=W(\sqrt{n})+1$
-.  
+root  = 1
+level 1 = 1
+* balanced so the depth of sqrt n divisions is lgnlgn
+.  O(lgn*lgn)
 .  
 .  
 .  
@@ -127,14 +134,23 @@ Suppose that for a given task you are choosing between the following three algor
     Which algorithm would you choose?
 
 
-.  
-.  
-.  
-.  
-. 
-. 
+.  A: W(n) = 5W(n/2) + n
+.  leaf = n^log2(5)
+.  root = n, therefore leaf dominanted
+.  O(n^log2(5))
 
+. B: W(n) = 2W(n-1) + 1
+. leaf = O(n)
+  root = O(1), therefore leaf dominanted
+  O(n)
 
+  C: W(n) = 9W(n/3) + n^2
+  leaf = 9(n/3)^2 = n^2
+  root= n^2, therefore balanced
+  O(n^2 * logn)
+
+C < A < B, Choose B since it has the least work 
+  
 
 ## Part 3: Parenthesis Matching
 
@@ -160,10 +176,11 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 **3b.** What are the recurrences for the Work and Span of this solution? What are their Big Oh solutions?
 
-**enter answer here**
+W(n) = W(n-1) +O(1)
+S(n) = S(n-1) + O(1)
+W(n) = O(n)
+S(n) = O(n)
 
-.  
-. 
 
 
 
@@ -176,7 +193,8 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 **3d.** Assume that any `map`s are done in parallel, and that we use the efficient implementation of `scan` from class. What are the recurrences for the Work and Span of this solution? 
 
-**enter answer here**
+W(n) = O(n)
+S(n) = O(logn)
 
 .  
 .  
@@ -197,10 +215,17 @@ Below, we'll solve this problem three different ways, using iterate, scan, and d
 
 **3f.** Assuming any recursive calls are done in parallel, what are the recurrences for the Work and Span of this solution? What are their Big Oh solutions?
 
-**enter answer here**
+W(n) = 2W(n/2) + O(1) 
+S(n) = S(n/2) + O(1)
+W(n) = 2^(log2(n) = n^log2(2)= n^1 = O(n)
+S(n) = O(lgn)
 
 .  
 . 
+
+
+ 
+ 
 
 
  
